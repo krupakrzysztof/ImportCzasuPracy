@@ -2,6 +2,7 @@
 <Project Sdk="Soneta.Sdk">
   <PropertyGroup>
     <TargetFramework>$(SonetaTargetFramework)</TargetFramework>
+    <PackageProjectUrl>https://github.com/krupakrzysztof/ImportCzasuPracy</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
