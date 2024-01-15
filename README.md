@@ -25,3 +25,5 @@ Przykładowa zawartość pliku JSON do importu przez dodatek:
   }
 ]
 ```
+Po zaimportowaniu przykładowego pliku zakładka z normą czasu pracy wygląda tak:
+![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/20581954-0508-45d4-9fbc-b5b51fe94368)
