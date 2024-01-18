@@ -4,7 +4,8 @@ Worker widoczny jest na liście pracowników w czynnościach i nazywa się "Impo
 
 ![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/74b77a7a-b4ce-4366-92fc-faf903479564)
 
-Prosi on o podanie ścieżki do pliku JSON z dniami pracy (przykład pliku poniżej). Po potwierdzeniu rozpoczenie się tworzenie dni kalendarza dla pracowników
+Prosi on o podanie ścieżki do pliku JSON z dniami pracy (przykład pliku poniżej). Po potwierdzeniu rozpoczenie się tworzenie dni kalendarza dla pracowników.
+Weryfikuje on czy tworzony dzień jest zgodny ze standardowym dniem (zgadza się godzina rozpoczęcia pracy oraz czas jej trwania) i jeżeli tak to pominie jego dodanie.
 
 Przykładowa zawartość pliku JSON do importu przez dodatek:
 ``` json
