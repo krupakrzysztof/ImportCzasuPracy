@@ -55,6 +55,10 @@ namespace ImportCzasuPracy.Workers
                         continue;
                     }
                     KalendarzBase kalendarz = pracownik.Kalendarze.First();
+                    if (kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime() && kalendarz.DefinicjaDnia.Praca.Czas == dzienGrafiku.CzasPracy.ToTime())
+                    {
+                        continue;
+                    }
 
                     DzienKalendarzaBase dzienKalendarza = kalendModule.DniKalendarza.WgKalendarz[kalendarz][new FieldCondition.Equal("Data", new Date(dzienGrafiku.Data))].FirstOrDefault();
                     if (dzienKalendarza == null)
@@ -67,18 +71,22 @@ namespace ImportCzasuPracy.Workers
                         DefinicjaDnia definicja = kalendModule.DefinicjeDni.WgNazwy[dzienGrafiku.DefinicjaDnia];
                         if (definicja == null)
                         {
+                            dzienKalendarza.Delete();
                             log.WriteLine($"Nie znaleziono definicji dnia o nazwie {dzienGrafiku.DefinicjaDnia} dla pracownika {pracownik.Kod} na {dzienGrafiku.Data.Date}");
                             continue;
                         }
                         dzienKalendarza.Definicja = definicja;
                     }
-                    if (dzienKalendarza.Praca.OdGodziny != dzienGrafiku.Rozpoczecie.ToTime())
+                    if (dzienKalendarza.Definicja.Typ == TypDnia.Pracy)
                     {
-                        dzienKalendarza.Praca.OdGodziny = dzienGrafiku.Rozpoczecie.ToTime();
-                    }
-                    if (dzienKalendarza.Praca.Czas != dzienGrafiku.CzasPracy.ToTime())
-                    {
-                        dzienKalendarza.Praca.Czas = dzienGrafiku.CzasPracy.ToTime();
+                        if (dzienKalendarza.Praca.OdGodziny != dzienGrafiku.Rozpoczecie.ToTime())
+                        {
+                            dzienKalendarza.Praca.OdGodziny = dzienGrafiku.Rozpoczecie.ToTime();
+                        }
+                        if (dzienKalendarza.Praca.Czas != dzienGrafiku.CzasPracy.ToTime())
+                        {
+                            dzienKalendarza.Praca.Czas = dzienGrafiku.CzasPracy.ToTime();
+                        }
                     }
                 }
 
