@@ -55,7 +55,8 @@ namespace ImportCzasuPracy.Workers
                         continue;
                     }
                     KalendarzBase kalendarz = pracownik.Kalendarze.First();
-                    if (kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime() && kalendarz.DefinicjaDnia.Praca.Czas == dzienGrafiku.CzasPracy.ToTime())
+                    if (pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime()
+                        && pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.Czas == dzienGrafiku.CzasPracy.ToTime())
                     {
                         continue;
                     }
