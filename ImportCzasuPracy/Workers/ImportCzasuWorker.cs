@@ -55,8 +55,25 @@ namespace ImportCzasuPracy.Workers
                         continue;
                     }
                     KalendarzBase kalendarz = pracownik.Kalendarze.First();
-                    if (pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime()
+                    DefinicjaDnia definicja = kalendModule.DefinicjeDni.WgNazwy[dzienGrafiku.DefinicjaDnia];
+                    if (definicja == null)
+                    {
+                        log.WriteLine($"Nie znaleziono definicji dnia o nazwie {dzienGrafiku.DefinicjaDnia} dla pracownika {pracownik.Kod} na {dzienGrafiku.Data.Date}");
+                        continue;
+                    }
+
+                    KalkulatorPlanu kalkulatorPlanu = new KalkulatorPlanu(pracownik);
+                    kalkulatorPlanu.LoadOkres(new FromTo(dzienGrafiku.Data, dzienGrafiku.Data));
+                    Dzien dzienPlanu = kalkulatorPlanu[dzienGrafiku.Data];
+
+                    if (dzienPlanu.Definicja.Typ == TypDnia.Pracy
+                        && pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime()
                         && pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.Czas == dzienGrafiku.CzasPracy.ToTime())
+                    {
+                        continue;
+                    }
+                    if ((dzienPlanu.Definicja.Typ == TypDnia.Świąteczny && definicja.Typ == TypDnia.Świąteczny)
+                        || (dzienPlanu.Definicja.Typ == TypDnia.Wolny && definicja.Typ == TypDnia.Wolny))
                     {
                         continue;
                     }
@@ -69,13 +86,6 @@ namespace ImportCzasuPracy.Workers
                     }
                     if (dzienKalendarza.Definicja == null || dzienKalendarza.Definicja.Nazwa != dzienGrafiku.DefinicjaDnia)
                     {
-                        DefinicjaDnia definicja = kalendModule.DefinicjeDni.WgNazwy[dzienGrafiku.DefinicjaDnia];
-                        if (definicja == null)
-                        {
-                            dzienKalendarza.Delete();
-                            log.WriteLine($"Nie znaleziono definicji dnia o nazwie {dzienGrafiku.DefinicjaDnia} dla pracownika {pracownik.Kod} na {dzienGrafiku.Data.Date}");
-                            continue;
-                        }
                         dzienKalendarza.Definicja = definicja;
                     }
                     if (dzienKalendarza.Definicja.Typ == TypDnia.Pracy)
