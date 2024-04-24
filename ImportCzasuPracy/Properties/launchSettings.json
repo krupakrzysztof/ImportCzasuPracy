@@ -3,7 +3,7 @@
     "ImportCzasuPracy": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\Soneta\\enova\\SonetaExplorer.exe",
-      "commandLineArgs": "/extpath=\"C:\\VS\\ImportCzasuPracy\\ImportCzasuPracy\\bin\\Debug\\netstandard2.0\""
+      "commandLineArgs": "--extpath=\"C:\\VS\\ImportCzasuPracy\\ImportCzasuPracy\\bin\\Debug\\netstandard2.0\""
     }
   }
 }
