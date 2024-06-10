@@ -70,6 +70,11 @@ namespace ImportCzasuPracy.Workers
                         && pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.OdGodziny == dzienGrafiku.Rozpoczecie.ToTime()
                         && pracownik.Last.Etat.Kalendarz.DefinicjaDnia.Praca.Czas == dzienGrafiku.CzasPracy.ToTime())
                     {
+                        DzienKalendarzaBase dzienKal = kalendModule.DniKalendarza.WgKalendarz[kalendarz][new FieldCondition.Equal("Data", new Date(dzienGrafiku.Data))].FirstOrDefault();
+                        if (dzienKal != null)
+                        {
+                            dzienKal.Delete();
+                        }
                         continue;
                     }
                     if ((dzienPlanu.Definicja.Typ == TypDnia.Świąteczny && definicja.Typ == TypDnia.Świąteczny)
