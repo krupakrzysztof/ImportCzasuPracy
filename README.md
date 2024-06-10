@@ -2,7 +2,8 @@ Rozwiązanie służy do importu czasu pracy do "Kalendarz/Norma czasu pracy".
 
 Worker widoczny jest na liście pracowników w czynnościach i nazywa się "Import czasu pracy"
 
-![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/74b77a7a-b4ce-4366-92fc-faf903479564)
+![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/c7292a49-95e1-477d-bdac-00f468a4cdbc)
+
 
 Prosi on o podanie ścieżki do pliku JSON z dniami pracy (przykład pliku poniżej). Po potwierdzeniu rozpoczenie się tworzenie dni kalendarza dla pracowników.
 Weryfikuje on czy tworzony dzień jest zgodny ze standardowym dniem (zgadza się godzina rozpoczęcia pracy oraz czas jej trwania) i jeżeli tak to pominie jego dodanie.
@@ -27,4 +28,4 @@ Przykładowa zawartość pliku JSON do importu przez dodatek:
 ]
 ```
 Po zaimportowaniu przykładowego pliku zakładka z normą czasu pracy wygląda tak:
-![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/20581954-0508-45d4-9fbc-b5b51fe94368)
+![image](https://github.com/krupakrzysztof/ImportCzasuPracy/assets/87368964/e49882c8-05d6-4bbc-bd3c-cf636fb29a96)
